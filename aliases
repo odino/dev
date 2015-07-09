@@ -1,0 +1,1 @@
+alias cap="docker run -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap"
