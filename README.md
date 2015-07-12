@@ -38,3 +38,12 @@ cd path/to/project
 cap
 root@39de5d514f5a:/src# sshsetup && cap deploy -S branch=... -S user=anadalin
 ```
+
+### atm
+
+Launches the atom editor on the current directory.
+
+```
+cd projects/my-app
+atm
+```
