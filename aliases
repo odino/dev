@@ -3,3 +3,4 @@ cap () {
 }
 
 alias atm="atom ."
+alias blog="cd ~/projects/odino.github.com && fig run --service-ports web"
