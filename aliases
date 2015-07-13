@@ -1,6 +1,19 @@
+# Docker based shortcuts
+
+## deployments
 cap () {
   docker run -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
 }
 
+# Personal shortcuts
+
+## Print but logs the current date and time
+p () {
+	echo -n `date` && echo " $@"
+}
+
+## open the atom editor in cwd
 alias atm="atom ."
+
+## run odino.org locally
 alias blog="cd ~/projects/odino.github.com && fig run --service-ports web"
