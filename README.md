@@ -83,7 +83,7 @@ Processing 56 page(s) for aliases...
 I have some [aliases](https://github.com/odino/odino.github.com/blob/source/.bashrc)
 setup for octopress that you might find useful.
 
-## mysql-server
+### mysql-server
 
 Launches a local mysql server:
 
@@ -103,7 +103,7 @@ MySQL user 'root' has no password but only allows local connections
 => Starting MySQL Server ...
 ```
 
-## mysql-local
+### mysql-local
 
 Connect to the local mysql instance:
 
