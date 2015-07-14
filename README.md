@@ -82,3 +82,44 @@ Processing 56 page(s) for aliases...
 
 I have some [aliases](https://github.com/odino/odino.github.com/blob/source/.bashrc)
 setup for octopress that you might find useful.
+
+## mysql-server
+
+Launches a local mysql server:
+
+```
+~  ᐅ mysql-server
+=> Using an existing volume of MySQL
+=> Creating MySQL user ...
+========================================================================
+You can now connect to this MySQL Server using:
+
+    mysql -uroot -proot -h<host> -P<port>
+
+MySQL user 'root' has no password but only allows local connections
+========================================================================
+=> importdb option selected was no
+=> No need for re-importing the databases
+=> Starting MySQL Server ...
+```
+
+## mysql-local
+
+Connect to the local mysql instance:
+
+```
+~  ᐅ mysql-local
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+```
