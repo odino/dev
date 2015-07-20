@@ -5,7 +5,30 @@ cap () {
   docker run -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
 }
 
+## ngrok
+ngrok () {
+  docker run --rm -ti --name ngrok -e HTTP_PORT=$@ ngrok
+}
+
 # Personal shortcuts
+
+## Countdown!
+countdown () {
+  secs=$@
+  while [ $secs -gt 0 ]; do
+     echo -n "$secs \r"
+     sleep 1
+     secs=$((secs - 1))
+  done
+}
+
+## Get a list of packages that I pesonally installed
+get-installed-stuff () {
+  echo "You have this stuff installed: \n"
+  comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) | awk {'print  $0'}
+  echo "\nIf you wish to install these packages:\n"
+  echo "sudo apt-get install -y \\" && comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) | awk {'print  $0 " \\"'}
+}
 
 ## Print but logs the current date and time
 p () {

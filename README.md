@@ -83,6 +83,66 @@ Processing 56 page(s) for aliases...
 I have some [aliases](https://github.com/odino/odino.github.com/blob/source/.bashrc)
 setup for octopress that you might find useful.
 
+### countdown
+
+Triggers a countdown, useful for pausing bash scripts and
+giving the user the ability to stop them:
+
+```
+~/projects/dev (master ✘)✹✭ ᐅ countdown 5
+```
+
+### get-installed-packages
+
+Prints a list of the stuff I have installed on my own,
+so that I can review it and check if there's  anything
+that should either be dockerized, removed or kept on my
+host:
+
+```
+~/projects/dev (master ✘)✹✭ ᐅ get-installed-stuff
+You have this stuff installed:
+
+atom
+build-essential
+dropbox
+flashplugin-installer
+gimp
+git
+google-chrome-stable
+guake
+hipchat
+htop
+keepassx
+lxc-docker
+mysql-workbench
+skype:i386
+vim
+whois
+zsh
+
+If you wish to install these packages:
+
+sudo apt-get install -y \
+atom \
+build-essential \
+dropbox \
+flashplugin-installer \
+gimp \
+git \
+google-chrome-stable \
+guake \
+hipchat \
+htop \
+keepassx \
+lxc-docker \
+mysql-workbench \
+skype:i386 \
+vim \
+whois \
+zsh \
+```
+
 ### mysql-server
 
 Launches a local mysql server:
@@ -122,4 +182,20 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
+```
+
+### ngrok
+
+Runs [ngrok](https://ngrok.com/) locally, so that I can
+[expose stuff I am working on the internet](http://odino.org/how-to-test-3rd-party-hooks-and-webservices-locally/):
+
+```
+~  ᐅ ngrok 8888
+[07/20/15 08:10:16] [INFO] Reading configuration file /.ngrok
+[07/20/15 08:10:16] [INFO] [client] Trusting root CAs: [assets/client/tls/ngrokroot.crt]
+[07/20/15 08:10:16] [INFO] [view] [web] Serving web interface on 127.0.0.1:4040
+[07/20/15 08:10:16] [INFO] Checking for update
+[07/20/15 08:10:17] [DEBG] [ctl:672c001e] New connection to: 96.126.125.171:443
+[07/20/15 08:10:17] [DEBG] [ctl:672c001e] Writing message: {"Type":"Auth","Payload":{"Version":"2","MmVersion":"1.7","User":"","Password":"","OS":"linux","Arch":"amd64","ClientId":""}}
+[07/20/15 08:10:17] [DEBG] [ctl:672c001e] Waiting to read message
 ```
