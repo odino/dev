@@ -25,7 +25,6 @@ gimp \
 git \
 google-chrome-stable \
 guake \
-hipchat \
 htop \
 keepassx \
 lxc-docker \
