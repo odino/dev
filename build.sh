@@ -4,7 +4,7 @@ source ./aliases
 echo "Creating docker images:"
 echo "You have 5 seconds to stop this operation..."
 
-# countdown 5
+countdown 5
 
 find . -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' |  \
 sed 's/.\///' | \
@@ -33,3 +33,21 @@ skype:i386 \
 vim \
 whois \
 zsh \
+
+echo "Manually installing atom's extensions:"
+echo "You have 5 seconds to stop this operation..."
+
+countdown 5
+
+apm install docblockr
+
+echo "Configuring git:"
+echo "You have 5 seconds to stop this operation..."
+
+countdown 5
+
+git config --global push.default simple
+git config --global core.editor vim
+git config --global user.name "odino"
+git config --global user.email "alessandro.nadalin@gmail.com"
+git config --global core.excludesfile ~/.gitignore_global
