@@ -2,12 +2,17 @@
 
 ## deployments
 cap () {
-  docker run -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
+  docker run --rm -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
 }
 
 ## ngrok
 ngrok () {
   docker run --rm -ti --name ngrok -e HTTP_PORT=$@ ngrok
+}
+
+## playground
+play () {
+  docker run --rm -ti --name play play
 }
 
 # Personal shortcuts

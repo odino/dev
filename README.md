@@ -199,3 +199,35 @@ Runs [ngrok](https://ngrok.com/) locally, so that I can
 [07/20/15 08:10:17] [DEBG] [ctl:672c001e] Writing message: {"Type":"Auth","Payload":{"Version":"2","MmVersion":"1.7","User":"","Password":"","OS":"linux","Arch":"amd64","ClientId":""}}
 [07/20/15 08:10:17] [DEBG] [ctl:672c001e] Waiting to read message
 ```
+
+### play
+
+Spins up a bare-minimum linux image ([alpine](https://github.com/gliderlabs/docker-alpine))
+for you to play:
+
+```
+~  ᐅ play
+/ # ls -la
+total 56
+drwxr-xr-x   30 root     root          4096 Jul 23 06:36 .
+drwxr-xr-x   30 root     root          4096 Jul 23 06:36 ..
+-rwxr-xr-x    1 root     root             0 Jul 23 06:36 .dockerenv
+-rwxr-xr-x    1 root     root             0 Jul 23 06:36 .dockerinit
+drwxr-xr-x    2 root     root          4096 Jul 23 06:33 bin
+drwxr-xr-x    5 root     root           380 Jul 23 06:36 dev
+drwxr-xr-x   19 root     root          4096 Jul 23 06:36 etc
+drwxr-xr-x    2 root     root          4096 Jun 12 19:19 home
+drwxr-xr-x    7 root     root          4096 Jul 23 06:33 lib
+lrwxrwxrwx    1 root     root            12 Jun 12 19:19 linuxrc -> /bin/busybox
+drwxr-xr-x    5 root     root          4096 Jun 12 19:19 media
+drwxr-xr-x    2 root     root          4096 Jun 12 19:19 mnt
+dr-xr-xr-x  290 root     root             0 Jul 23 06:36 proc
+drwx------    2 root     root          4096 Jul 23 06:36 root
+drwxr-xr-x    2 root     root          4096 Jun 12 19:19 run
+drwxr-xr-x    2 root     root          4096 Jul 23 06:33 sbin
+dr-xr-xr-x   13 root     root             0 Jul 23 06:36 sys
+drwxrwxrwt    2 root     root          4096 Jun 12 19:19 tmp
+drwxr-xr-x   12 root     root          4096 Jul 23 06:33 usr
+drwxr-xr-x   10 root     root          4096 Jul 23 06:32 var
+/ #
+```
