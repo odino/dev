@@ -12,7 +12,7 @@ ngrok () {
 
 ## playground
 play () {
-  docker run --rm -ti --name play play
+  docker run --net=host --rm -ti --name play play
 }
 
 # Personal shortcuts
