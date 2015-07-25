@@ -34,6 +34,8 @@ vim \
 whois \
 zsh \
 
+sudo apt-get remove -y thunderbird
+
 echo "Manually installing atom's extensions:"
 echo "You have 5 seconds to stop this operation..."
 
@@ -51,3 +53,5 @@ git config --global core.editor vim
 git config --global user.name "odino"
 git config --global user.email "alessandro.nadalin@gmail.com"
 git config --global core.excludesfile ~/.gitignore_global
+
+echo 'All done!'

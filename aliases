@@ -27,6 +27,16 @@ countdown () {
   done
 }
 
+## Cleans docker images / containers
+## to prevent them from eating ton
+## of space
+docker-clean() {
+  echo 'Removing exited containers'
+  docker rm $(docker ps -f=status=exited -a -q)
+  echo 'Removing dangling images'
+  docker rmi `docker images -qf 'dangling=true'`
+}
+
 ## Get a list of packages that I pesonally installed
 get-installed-stuff () {
   echo "You have this stuff installed: \n"
