@@ -92,6 +92,18 @@ giving the user the ability to stop them:
 ~/projects/dev (master ✘)✹✭ ᐅ countdown 5
 ```
 
+### docker-clean
+
+Cleans docker directories:
+
+```
+~/projects/dev (master ✔) ᐅ docker-clean
+Removing exited containers
+9bdfbf4fcf06
+Removing dangling images
+...
+```
+
 ### get-installed-packages
 
 Prints a list of the stuff I have installed on my own,
