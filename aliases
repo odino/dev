@@ -63,3 +63,23 @@ alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/l
 ## connect to the local instance of mysql
 ## through the namshi/mysql image
 alias mysql-local="mysql -u root -proot -h 127.0.0.1;"
+
+## because fuck docker-compose, it's
+## too long to type
+alias fig='docker-compose'
+
+## git-based aliases
+alias st='git status'
+alias reset="git reset --hard"
+alias ck="git checkout $1"
+alias fetch="git fetch"
+alias master="git checkout master"
+alias push="git push"
+merge (){
+	git merge --no-ff --no-edit "$@"
+}
+## rebase a specific git branch
+## from master
+rebase (){
+    ck "$@" && git pull --rebase && master && git pull --rebase && ck "$@" && rebm
+}
