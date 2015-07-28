@@ -1,16 +1,6 @@
 #!/usr/bin/zsh
 source ./aliases
 
-echo "Creating docker images:"
-echo "You have 5 seconds to stop this operation..."
-
-countdown 5
-
-find . -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' |  \
-sed 's/.\///' | \
-awk {'print "echo BUILDING DOCKER IMAGE " $1 " && docker build -t " $1 " " $1'} | \
-bash
-
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
 
@@ -35,6 +25,16 @@ whois \
 zsh \
 
 sudo apt-get remove -y thunderbird
+
+echo "Creating docker images:"
+echo "You have 5 seconds to stop this operation..."
+
+countdown 5
+
+find . -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' |  \
+sed 's/.\///' | \
+awk {'print "echo BUILDING DOCKER IMAGE " $1 " && docker build -t " $1 " " $1'} | \
+bash
 
 echo "Manually installing atom's extensions:"
 echo "You have 5 seconds to stop this operation..."
