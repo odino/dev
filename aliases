@@ -74,7 +74,7 @@ alias reset="git reset --hard"
 alias ck="git checkout $1"
 alias fetch="git fetch"
 alias master="git checkout master"
-alias push="git push"
+alias push="git push --set-upstream origin `git symbolic-ref --short HEAD`"
 merge (){
 	git merge --no-ff --no-edit "$@"
 }

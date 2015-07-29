@@ -1,6 +1,13 @@
 #!/usr/bin/zsh
 source ./aliases
 
+echo "Installing NPM modules:"
+echo "You have 5 seconds to stop this operation..."
+
+countdown 5
+
+npm install -g gulp
+
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
 
