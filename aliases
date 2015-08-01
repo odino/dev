@@ -54,7 +54,7 @@ p () {
 alias atm="atom ."
 
 ## run odino.org locally
-alias blog="cd ~/projects/odino.github.com && fig run --service-ports web"
+alias blog="cd ~/projects/odino.github.com && atm && guake -n ~/projects/odino.github.com && fig run --service-ports web"
 
 ## launch the local instance of mysql
 ## through the namshi/mysql image
