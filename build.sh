@@ -1,12 +1,19 @@
 #!/usr/bin/zsh
 source ./aliases
 
+echo "Prerequisites:"
+echo "* clone and compile node (with npm)"
+echo "* install docker (https://blog.docker.com/2015/07/new-apt-and-yum-repos/) and have it running for yur user (https://docs.docker.com/installation/ubuntulinux/#optional-configurations-for-docker-on-ubuntu)"
+echo "Please abort (you have 5 seconds) if this stuff ain't done!"
+
+countdown 5
+
 echo "Installing NPM modules:"
 echo "You have 5 seconds to stop this operation..."
 
 countdown 5
 
-npm install -g gulp
+npm install -g gulp bower
 
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
@@ -24,7 +31,6 @@ google-chrome-stable \
 guake \
 htop \
 keepassx \
-lxc-docker \
 mysql-workbench \
 skype:i386 \
 vim \
