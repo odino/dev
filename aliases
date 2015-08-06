@@ -17,6 +17,9 @@ play () {
 
 # Personal shortcuts
 
+## Funny SSH moments!
+alias sshrenew='ssh-add -D && ssh-agent && ssh-add'
+
 ## Countdown!
 countdown () {
   secs=$@
