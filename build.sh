@@ -54,7 +54,7 @@ echo "You have 5 seconds to stop this operation..."
 
 countdown 5
 
-apm install docblockr
+apm install docblockr atom-beautify
 
 echo "Configuring git:"
 echo "You have 5 seconds to stop this operation..."
