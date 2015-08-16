@@ -23,6 +23,7 @@ countdown 5
 sudo apt-get install -y \
 atom \
 build-essential \
+docker-engine \
 dropbox \
 flashplugin-installer \
 gimp \
@@ -33,6 +34,8 @@ htop \
 keepassx \
 mysql-workbench \
 skype:i386 \
+teamviewer:i386 \
+unrar \
 vim \
 whois \
 zsh \
