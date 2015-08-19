@@ -71,6 +71,11 @@ alias mysql-local="mysql -u root -proot -h 127.0.0.1"
 ## too long to type
 alias fig='docker-compose'
 
+## Get into a container
+in (){
+  docker exec -ti $@ sh
+}
+
 ## git-based aliases
 alias st='git status'
 alias reset="git reset --hard"
