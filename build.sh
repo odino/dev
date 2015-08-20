@@ -13,7 +13,7 @@ echo "You have 5 seconds to stop this operation..."
 
 countdown 5
 
-npm install -g gulp bower
+npm install -g gulp bower nodemon
 
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
