@@ -1,5 +1,10 @@
 # Docker based shortcuts
 
+## unrar
+unrar () {
+  docker run --rm -ti --name unrar -v $(pwd):/src unrar unrar e $@
+}
+
 ## deployments
 cap () {
   docker run --rm -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap

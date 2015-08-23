@@ -36,7 +36,6 @@ mysql-workbench \
 postgresql-client \
 skype:i386 \
 teamviewer:i386 \
-unrar \
 vim \
 whois \
 zsh \
