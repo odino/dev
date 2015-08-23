@@ -243,3 +243,16 @@ drwxr-xr-x   12 root     root          4096 Jul 23 06:33 usr
 drwxr-xr-x   10 root     root          4096 Jul 23 06:32 var
 / #
 ```
+
+### unrar
+
+Extracts a `rar` archive in the current directory:
+
+```
+~/Downloads/rar (master ✔) ᐅ unrar archive.rar
+
+UNRAR 5.21 freeware      Copyright (c) 1993-2015 Alexander Roshal
+
+
+Extracting from archive.rar
+```
