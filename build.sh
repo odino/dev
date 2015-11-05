@@ -33,6 +33,7 @@ guake \
 htop \
 keepassx \
 mysql-workbench \
+screen \
 skype:i386 \
 teamviewer:i386 \
 vim \
