@@ -1,7 +1,7 @@
 FROM alpine
 
 # install tools
-RUN apk add --update wget curl net-tools python nodejs
+RUN apk add --update wget curl net-tools python nodejs php
 
 # install python deps
 RUN wget https://bootstrap.pypa.io/get-pip.py

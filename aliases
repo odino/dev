@@ -17,10 +17,13 @@ ngrok () {
 
 ## playground
 play () {
-  docker run --net=host --rm -ti --name play -v $(pwd):/src play
+  docker run --net=host --rm -ti -v $(pwd):/src play
 }
 
 # Personal shortcuts
+
+## Rebuilding node
+alias node-build='./configure --prefix=/home/odino/local/node && make && make install'
 
 ## Funny SSH moments!
 alias sshrenew='ssh-add -D && ssh-agent && ssh-add'
