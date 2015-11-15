@@ -69,7 +69,7 @@ alias blog="cd ~/projects/odino.github.com && atm && guake -n ~/projects/odino.g
 
 ## launch the local instance of mysql
 ## through the namshi/mysql image
-alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/lib/mysql -p 3306:3306 namshi/mysql"
+alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/lib/mysql -p 3306:3306 --name mysql --rm namshi/mysql"
 
 ## connect to the local instance of mysql
 ## through the namshi/mysql image
