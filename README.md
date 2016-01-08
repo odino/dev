@@ -1,4 +1,4 @@
-# Dockerfiles
+# Dev setup
 
 Since I decided to install as less stuff as
 possible on my machine, here I keep the
@@ -9,6 +9,8 @@ You might not find most of this stuff super
 useful, as it's simply a description of
 what runs (mostly through docker) on my
 dev machine.
+
+* [odino.org/how-docker-changed-me/](http://odino.org/how-docker-changed-me/)
 
 ## Installation
 
