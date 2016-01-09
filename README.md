@@ -1,4 +1,4 @@
-# Dev setup
+# Dev
 
 Since I decided to install as less stuff as
 possible on my machine, here I keep the
