@@ -1,5 +1,10 @@
 # Docker based shortcuts
 
+## ab
+ab () {
+  docker run --rm -ti --name ab play ab $@
+}
+
 ## unrar
 unrar () {
   docker run --rm -ti --name unrar -v $(pwd):/src unrar unrar e $@

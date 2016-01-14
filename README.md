@@ -45,6 +45,14 @@ root@39de5d514f5a:/src# sshsetup && cap deploy -S branch=... -S user=anadalin
 
 ### atm
 
+Runs Apache Benchmark:
+
+```
+ab -n 1000 -c 50 https://github.com/
+```
+
+### atm
+
 Launches the atom editor on the current directory.
 
 ```
