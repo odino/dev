@@ -25,6 +25,11 @@ play () {
   docker run --net=host --rm -ti -v $(pwd):/src play
 }
 
+## wrk
+wrk () {
+  docker run --net=host --rm -ti wrk wrk $@
+}
+
 # Personal shortcuts
 
 ## Rebuilding node

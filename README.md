@@ -266,3 +266,19 @@ UNRAR 5.21 freeware      Copyright (c) 1993-2015 Alexander Roshal
 
 Extracting from archive.rar
 ```
+
+### wrk
+
+Runs the [wrk](https://github.com/wg/wrk) benchmarking tool:
+
+```
+~/projects/dev (master ✘)✹✭ ᐅ wrk http://google.com
+Running 10s test @ http://google.com
+  2 threads and 10 connections
+^C  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   125.22ms    2.15ms 144.51ms   96.14%
+    Req/Sec    40.37     12.37    50.00     83.65%
+  440 requests in 5.60s, 209.65KB read
+Requests/sec:     78.51
+Transfer/sec:     37.41KB
+```
