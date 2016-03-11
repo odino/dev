@@ -10,6 +10,23 @@ unrar () {
   docker run --rm -ti --name unrar -v $(pwd):/src unrar unrar e $@
 }
 
+## chrome-docker
+chrome-docker() {
+  xhost +local:docker
+
+  docker run -it --rm \
+     --net host \
+     --cpuset-cpus 0 \
+     --memory 512mb \
+     -v /tmp/.X11-unix:/tmp/.X11-unix \
+     -e DISPLAY=unix$DISPLAY \
+     -v $HOME/Downloads:/root/Downloads \
+     --device /dev/snd \
+     -v /dev/shm:/dev/shm \
+     --name chrome \
+     jess/chrome
+}
+
 ## deployments
 cap () {
   docker run --rm -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
