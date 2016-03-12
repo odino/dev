@@ -49,6 +49,9 @@ wrk () {
 
 # Personal shortcuts
 
+## ls sucks
+alias l='ls -la'
+
 ## Rebuilding node
 alias node-build='./configure --prefix=/home/odino/local/node && make && make install'
 
