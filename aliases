@@ -29,7 +29,7 @@ chrome-docker() {
 
 ## deployments
 cap () {
-  docker run --rm -ti -v $(pwd):/src -v ~/.ssh/:/ssh cap
+  docker run --rm -ti -v $(pwd):/src -v ~/.ssh/id_rsa_namshi:/ssh/id_rsa cap
 }
 
 ## ngrok
@@ -48,6 +48,9 @@ wrk () {
 }
 
 # Personal shortcuts
+
+## where's my Go?
+alias gogo='cd ~/projects/go/src/github.com'
 
 ## ls sucks
 alias l='ls -la'
