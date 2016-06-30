@@ -34,10 +34,13 @@ guake \
 htop \
 keepassx \
 mysql-workbench \
+pwgen \
 screen \
 skype:i386 \
 teamviewer:i386 \
 vim \
+virtualbox \
+vlc \
 whois \
 zsh \
 
