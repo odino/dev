@@ -139,3 +139,6 @@ merge (){
 rebase (){
     ck "$@" && git pull --rebase && master && git pull --rebase && ck "$@" && rebm
 }
+
+## Go home!
+alias gome='cd ~/projects/go/src/github.com/odino'
