@@ -8,10 +8,7 @@ RUN apk add --update python
 RUN apk add --update nodejs
 RUN apk add --update php
 RUN apk add --update apache2-utils
-
-# install python deps
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python get-pip.py
+RUN apk add --update py-pip
 
 # install node deps
 RUN npm install -g lodash nodemon
