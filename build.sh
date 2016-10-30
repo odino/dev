@@ -14,7 +14,7 @@ echo "You have 5 seconds to stop this operation..."
 countdown 5
 
 npm set progress=false
-npm install -g gulp bower nodemon http-server webpack
+npm install -g gulp bower nodemon http-server webpack yarn
 
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
