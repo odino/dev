@@ -8,23 +8,14 @@ echo "Please abort (you have 5 seconds) if this stuff ain't done!"
 
 countdown 5
 
-echo "Installing NPM modules:"
-echo "You have 5 seconds to stop this operation..."
-
-countdown 5
-
-npm set progress=false
-npm install -g gulp bower nodemon http-server webpack yarn
-
 echo "Manually installing some packages:"
 echo "You have 5 seconds to stop this operation..."
 
 countdown 5
 
-sudo apt-get install -y \
+sudo apt-get install -y --allow-unauthenticated \
 atom \
 build-essential \
-docker-engine \
 dropbox \
 flashplugin-installer \
 gimp \
@@ -36,8 +27,6 @@ keepassx \
 mysql-workbench \
 pwgen \
 screen \
-skype:i386 \
-teamviewer:i386 \
 vim \
 virtualbox \
 vlc \
@@ -61,7 +50,7 @@ echo "You have 5 seconds to stop this operation..."
 
 countdown 5
 
-apm install docblockr atom-beautify
+apm install docblockr atom-beautify nuclide
 
 echo "Configuring git:"
 echo "You have 5 seconds to stop this operation..."
