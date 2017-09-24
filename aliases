@@ -142,3 +142,6 @@ rebase (){
 
 ## Go home!
 alias gome='cd ~/projects/go/src/github.com/odino'
+
+## React native
+alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
