@@ -9,6 +9,7 @@ RUN apk add --update nodejs
 RUN apk add --update php5
 RUN apk add --update apache2-utils
 RUN apk add --update py-pip
+RUN apk add --update nodejs-npm
 
 # install node deps
 RUN npm install -g lodash nodemon
