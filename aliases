@@ -103,6 +103,9 @@ p () {
 ## open the atom editor in cwd
 alias atm="atom ."
 
+## open vscode in cwd
+alias co="code ."
+
 ## run odino.org locally
 alias blog="cd ~/projects/odino.github.com && atm && guake -n ~/projects/odino.github.com && fig run --service-ports web"
 
