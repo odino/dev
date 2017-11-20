@@ -102,6 +102,9 @@ p () {
 
 ## open the atom editor in cwd
 alias atm="atom ."
+ 
+## open the atom editor in cwd
+alias v="vim ."
 
 ## open vscode in cwd
 alias co="code ."
