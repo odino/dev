@@ -56,7 +56,7 @@ alias gogo='cd ~/projects/go/src/github.com'
 alias l='ls -la'
 
 ## Rebuilding node
-alias node-build='cd ~/projects/node && ./configure --prefix=/home/$USER/local/node && make && make install'
+alias node-build='cd ~/projects/node && ./configure --prefix=~/local/node && make && make install'
 
 ## Funny SSH moments!
 alias sshrenew='ssh-add -D && ssh-agent && ssh-add && ssh-add ~/.ssh/id_rsa_namshi'
