@@ -66,6 +66,7 @@ alias genymotion='~/genymotion/genymotion'
 
 ## k8s love
 alias k='kubectl'
+alias ks='kubectl -n kube-system'
 
 ## Countdown!
 countdown () {
