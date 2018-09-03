@@ -67,6 +67,9 @@ alias genymotion='~/genymotion/genymotion'
 ## k8s love
 alias k='kubectl'
 alias ks='kubectl -n kube-system'
+alias kd='kubectl -n datalabs'
+alias kx='kubectl -n x'
+alias ki='kubectl -n istio-system'
 
 ## Countdown!
 countdown () {
@@ -103,7 +106,7 @@ p () {
 
 ## open the atom editor in cwd
 alias atm="atom ."
- 
+
 ## open the atom editor in cwd
 alias v="vim ."
 
@@ -115,11 +118,15 @@ alias blog="cd ~/projects/odino.github.com && atm && guake -n ~/projects/odino.g
 
 ## launch the local instance of mysql
 ## through the namshi/mysql image
-alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/lib/mysql -p 3306:3306 --name mysql --rm namshi/mysql"
+alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/lib/mysql -p 3306:3306 --name mysql --rm mysql"
 
 ## connect to the local instance of mysql
 ## through the namshi/mysql image
 alias mysql-local="mysql -u root -proot -h 127.0.0.1"
+myf () {
+  POD_NAME=$(kubectl get pods --namespace default -l "app=mysql-mysql" -o jsonpath="{.items[0].metadata.name}")
+  kubectl port-forward $POD_NAME 3306:3306
+}
 
 ## because fuck docker-compose, it's
 ## too long to type
@@ -156,3 +163,4 @@ alias gome='cd ~/projects/go/src/github.com/odino'
 ## React native
 alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
 alias inc='docker exec -ti' $@
+alias minire="minikube stop && minikube start"
