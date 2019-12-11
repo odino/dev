@@ -10,6 +10,10 @@ unrar () {
   docker run --rm -ti --name unrar -v $(pwd):/src unrar unrar e $@
 }
 
+kapitan () {
+  docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan $@
+}
+
 ## chrome-docker
 chrome-docker() {
   xhost +local:docker
