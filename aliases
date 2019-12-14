@@ -70,8 +70,9 @@ alias genymotion='~/genymotion/genymotion'
 
 ## k8s love
 alias k='kubectl'
+alias kup='sudo snap enable microk8s'
+alias kdown='sudo snap disable microk8s'
 alias ks='kubectl -n kube-system'
-alias kd='kubectl -n datalabs'
 alias kx='kubectl -n x'
 alias ki='kubectl -n istio-system'
 
