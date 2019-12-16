@@ -54,13 +54,10 @@ wrk () {
 # Personal shortcuts
 
 ## where's my Go?
-alias gogo='cd ~/projects/go/src/github.com'
+alias gogo='cd ~/github.com/'
 
 ## ls sucks
 alias l='ls -la'
-
-## Rebuilding node
-alias node-build='cd ~/projects/node && ./configure --prefix=~/local/node && make && make install'
 
 ## Funny SSH moments!
 alias sshrenew='ssh-add -D && ssh-agent && ssh-add && ssh-add ~/.ssh/id_rsa_namshi'
@@ -119,7 +116,7 @@ alias v="vim ."
 alias co="code ."
 
 ## run odino.org locally
-alias blog="cd ~/projects/odino.github.com && co && guake -n ~/projects/odino.github.com && fig run -p 4000:4000 web"
+alias blog="cd ~/github.com/odino/odino.github.com && co && guake -n ~/github.com//odino.github.com && fig run -p 4000:4000 web"
 
 ## launch the local instance of mysql
 ## through the namshi/mysql image
@@ -163,7 +160,7 @@ rebase (){
 }
 
 ## Go home!
-alias gome='cd ~/projects/go/src/github.com/odino'
+alias gome='cd ~/github.com/odino'
 
 ## React native
 alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
