@@ -60,7 +60,7 @@ alias gogo='cd ~/github.com/'
 alias l='ls -la'
 
 ## Funny SSH moments!
-alias sshrenew='ssh-add -D && ssh-agent && ssh-add && ssh-add ~/.ssh/id_rsa_namshi'
+alias sshrenew='ssh-add -D && ssh-agent && ssh-add'
 
 ## Launch genymotion
 alias genymotion='~/genymotion/genymotion'
@@ -116,7 +116,7 @@ alias v="vim ."
 alias co="code ."
 
 ## run odino.org locally
-alias blog="cd ~/github.com/odino/odino.github.com && co && guake -n ~/github.com//odino.github.com && fig run -p 4000:4000 web"
+alias blog="cd ~/github.com/odino/odino.github.com && co && guake -n ~/github.com/odino/odino.github.com && fig run -p 4000:4000 web"
 
 ## launch the local instance of mysql
 ## through the namshi/mysql image
@@ -125,10 +125,7 @@ alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/l
 ## connect to the local instance of mysql
 ## through the namshi/mysql image
 alias mysql-local="mysql -u root -proot -h 127.0.0.1"
-myf () {
-  POD_NAME=$(kubectl get pods --namespace default -l "app=mysql-mysql" -o jsonpath="{.items[0].metadata.name}")
-  kubectl port-forward $POD_NAME 3306:3306
-}
+alias mf='kubectl port-forward svc/mysql 3306'
 
 ## because fuck docker-compose, it's
 ## too long to type
@@ -165,4 +162,3 @@ alias gome='cd ~/github.com/odino'
 ## React native
 alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
 alias inc='docker exec -ti' $@
-alias minire="minikube stop && minikube start"
