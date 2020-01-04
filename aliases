@@ -160,6 +160,10 @@ rebase (){
     ck "$@" && git pull --rebase && master && git pull --rebase && ck "$@" && rebm
 }
 
+## Sys stuff
+alias update='sudo apt-get update'
+alias upgrade='update && sudo apt-get upgrade'
+
 ## Go home!
 alias gome='cd ~/github.com/odino'
 
