@@ -170,3 +170,7 @@ alias gome='cd ~/github.com/odino'
 ## React native
 alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
 alias inc='docker exec -ti' $@
+
+## Bluetooth
+alias bon='rfkill unblock bluetooth'
+alias boff='rfkill block bluetooth'
