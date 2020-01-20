@@ -168,7 +168,7 @@ alias upgrade='update && sudo apt-get upgrade'
 alias gome='cd ~/github.com/odino'
 
 ## React native
-alias react-native-container='~/projects/docker-react-native/react-native-container.sh'
+alias react-native-container='~/github.com/odino/docker-react-native/react-native-container.sh'
 alias inc='docker exec -ti' $@
 
 ## Bluetooth
