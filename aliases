@@ -177,3 +177,6 @@ alias boff='rfkill block bluetooth'
 
 ## When the wifi gets wonky...
 alias witf='sudo service network-manager restart'
+
+## Chrome URLs
+alias mdt='google-chrome https://www.tablesgenerator.com/markdown_tables'
