@@ -13,10 +13,7 @@ if !config_file || !db {
     exit(1, "usage: -f my_config.txt -db database")
 }
 
-cmd = "cat $config_file | grep '$db' -A 1"
-config =  `$cmd`
-db, host = config.lines()
-host = host.split(":")[1].trim()
+config =  `cat $config_file | grep '$db' -A 1`.lines()[1].split(":")[1].trim()
 jumphost = `cat $config_file | grep jumphost`.split(":")[1].trim()
 
 exec("ssh -i ~/.ssh/id_rsa anadalin@$jumphost -L 3306:$host:3306")
