@@ -128,8 +128,8 @@ alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/l
 
 ## connect to the local instance of mysql
 ## through the namshi/mysql image
-alias mysql-local="mysql -u root -proot -h 127.0.0.1 -P 3333"
-alias mf='kubectl port-forward svc/mysql 3306'
+alias mf="kubectl port-forward svc/mysql 3333:3306"
+alias my="mysql -u root -proot -h 127.0.0.1 -P 3333"
 
 ## because fuck docker-compose, it's
 ## too long to type
