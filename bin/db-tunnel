@@ -8,13 +8,16 @@
 # host: 1.2.3.4
 config_file = flag("f")
 db = flag("db")
+env = flag("env") || 'live'
 
 if !config_file || !db {
     exit(1, "usage: -f my_config.txt -db database")
 }
 
+db += "_$env"
+
 host =  `cat $config_file | grep '$db' -A 1`.lines()[1].split(":")[1].trim()
-jumphost = `cat $config_file | grep jumphost`.split(":")[1].trim()
+jumphost = `cat $config_file | grep 'jumphost_$env'`.split(":")[1].trim()
 
 cmd = "ssh -i ~/.ssh/id_rsa anadalin@$jumphost -L 3306:$host:3306"
 
