@@ -9,21 +9,36 @@
 config_file = flag("f")
 db = flag("db")
 env = flag("env") || 'live'
+status = flag("status") || 'up'
 
 if !config_file || !db {
     exit(1, "usage: -f my_config.txt -db database")
 }
 
 db += "_$env"
-
 host =  `cat $config_file | grep '$db' -A 1`.lines()[1].split(":")[1].trim()
+user =  `cat $config_file | grep '$db' -A 2`.lines()[2].split(":")[1].trim()
+pwd  =  `cat $config_file | grep '$db' -A 3`.lines()[3].split(":")[1].trim()
+port =  `cat $config_file | grep '$db' -A 4`.lines()[4].split(":")[1].trim()
 jumphost = `cat $config_file | grep 'jumphost_$env'`.split(":")[1].trim()
 
-cmd = "ssh -i ~/.ssh/id_rsa anadalin@$jumphost -L 3306:$host:3306"
+mysql_conn = "mysql -h 127.0.0.1 -u $user -P $port -p$pwd -e 'SELECT 1'"
+echo(mysql_conn)
+up = `$mysql_conn`.ok
 
-if flag("debug") {
-    echo(cmd)
-    exit(0)
+cmd = "ssh -i ~/.ssh/id_rsa anadalin@$jumphost -L $port:$host:3306"
+
+if status == 'down' {
+    if up {
+        pid = `ps aux | grep ssh | grep '$host' | grep '$port'`.split().filter(f(x){!!x})[1]
+        `kill $pid`
+    }
+    exit(0, "tunnel down")
 }
 
-exec(cmd)
+if up {
+    exit(0, "tunnel up")
+}
+
+echo(cmd)
+`$cmd &`
