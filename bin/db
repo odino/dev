@@ -1,0 +1,13 @@
+#!/usr/bin/env abs
+#
+# Utility to connect to my local database
+tunnel = `kubectl port-forward svc/mysql 3333:3306 &`
+
+sleep(1000)
+
+# This means our tunnel just gave up...
+if tunnel.done {
+    echo(tunnel)
+}
+
+exec("mysql -u root -proot -P 3333 -h 127.0.0.1")

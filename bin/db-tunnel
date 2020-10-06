@@ -22,17 +22,20 @@ pwd  =  `cat $config_file | grep '$db' -A 3`.lines()[3].split(":")[1].trim()
 port =  `cat $config_file | grep '$db' -A 4`.lines()[4].split(":")[1].trim()
 jumphost = `cat $config_file | grep 'jumphost_$env'`.split(":")[1].trim()
 
-mysql_conn = "mysql -h 127.0.0.1 -u $user -P $port -p$pwd -e 'SELECT 1'"
+mysql_conn = "mysql -h 127.0.0.1 -u $user -P $port -p$pwd"
 echo(mysql_conn)
-up = `$mysql_conn`.ok
 
+if args()[-1] == "connect" {
+    exec(mysql_conn)
+    return;
+}
+
+up = `$mysql_conn -e 'SELECT 1'`.ok
 cmd = "ssh -i ~/.ssh/id_rsa anadalin@$jumphost -L $port:$host:3306"
 
 if status == 'down' {
-    if up {
-        pid = `ps aux | grep ssh | grep '$host' | grep '$port'`.split().filter(f(x){!!x})[1]
-        `kill $pid`
-    }
+    pid = `ps aux | grep ssh | grep '$host' | grep '$port'`.split().filter(f(x){!!x})[1]
+    `kill $pid`
     exit(0, "tunnel down")
 }
 
