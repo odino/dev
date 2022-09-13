@@ -179,5 +179,5 @@ alias wscan='nmcli dev wifi'
 
 ## Chrome URLs
 alias mdt='google-chrome https://www.tablesgenerator.com/markdown_tables'
-alias whoami='google-chrome https://account.noon.com/_svc/whoami-v1/whoami --kiosk --args --profile-directory=Default'
+alias nwhoami='google-chrome https://account.noon.com/_svc/whoami-v1/whoami --kiosk --args --profile-directory=Default'
 
