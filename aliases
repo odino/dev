@@ -40,11 +40,6 @@ cap () {
   docker run --rm -ti -v $(pwd):/src -v ~/.ssh/id_rsa_namshi:/ssh/id_rsa cap
 }
 
-## ngrok
-ngrok () {
-  docker run --rm -ti --name ngrok -e HTTP_PORT=$@ ngrok
-}
-
 ## playground
 play () {
   docker run --net=host --rm -ti -v $(pwd):/src play
@@ -76,6 +71,7 @@ alias ddown='sudo snap disable docker'
 alias kup='sudo snap enable microk8s'
 alias kdown='sudo snap disable microk8s'
 alias ks='kubectl -n kube-system'
+alias kr='kubectl -n container-registry'
 alias kx='kubectl -n x'
 alias ki='kubectl -n istio-system'
 
@@ -179,6 +175,9 @@ alias boff='rfkill block bluetooth'
 
 ## When the wifi gets wonky...
 alias witf='sudo service network-manager restart'
+alias wscan='nmcli dev wifi'
 
 ## Chrome URLs
 alias mdt='google-chrome https://www.tablesgenerator.com/markdown_tables'
+alias whoami='google-chrome https://account.noon.com/_svc/whoami-v1/whoami --kiosk --args --profile-directory=Default'
+
