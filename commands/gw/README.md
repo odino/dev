@@ -28,8 +28,7 @@ gw feat-foo
 
 If no worktree exists for `feat-foo`:
 1. Runs `git worktree add` (uses the existing branch if it exists, otherwise creates it)
-2. Opens a new gnome-terminal bash window in the worktree directory
-3. `cd`s into the worktree
+2. `cd`s into the worktree
 
 ### Delete a worktree
 
@@ -38,3 +37,11 @@ gw rm feat-foo
 ```
 
 Removes the worktree directory and runs `git worktree prune` to clean up metadata.
+
+### Delete all worktrees
+
+```bash
+gw nuke
+```
+
+Removes all worktrees under `.worktrees/` and runs `git worktree prune`.
