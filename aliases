@@ -1,56 +1,7 @@
 # Docker based shortcuts
 
-## ab
-ab () {
-  docker run --rm -ti --name ab play ab $@
-}
-
-## unrar
-unrar () {
-  docker run --rm -ti --name unrar -v $(pwd):/src unrar unrar e $@
-}
-
-# kapitan
-kapitan () {
-  docker run -t --rm -v $(pwd):/src:delegated deepmind/kapitan $@
-}
-
 # dev
 alias dev='~/github.com/odino/k8s-dev/dev'
-
-## chrome-docker
-chrome-docker() {
-  xhost +local:docker
-
-  docker run -it --rm \
-     --net host \
-     --cpuset-cpus 0 \
-     --memory 512mb \
-     -v /tmp/.X11-unix:/tmp/.X11-unix \
-     -e DISPLAY=unix$DISPLAY \
-     -v $HOME/Downloads:/root/Downloads \
-     --device /dev/snd \
-     -v /dev/shm:/dev/shm \
-     --name chrome \
-     jess/chrome
-}
-
-## deployments
-cap () {
-  docker run --rm -ti -v $(pwd):/src -v ~/.ssh/id_rsa_namshi:/ssh/id_rsa cap
-}
-
-## playground
-play () {
-  docker run --net=host --rm -ti -v $(pwd):/src play
-}
-
-## wrk
-wrk () {
-  docker run --net=host --rm -ti wrk wrk $@
-}
-
-# Personal shortcuts
 
 ## where's my Go?
 alias gogo='cd ~/github.com/'
@@ -61,14 +12,11 @@ alias l='ls -la'
 ## Funny SSH moments!
 alias sshrenew='ssh-add -D && ssh-agent && ssh-add'
 
-## Launch genymotion
-alias genymotion='~/genymotion/genymotion'
-
 ## k8s love
 alias k='kubectl'
 alias dup='sudo snap enable docker'
 alias ddown='sudo snap disable docker'
-alias kup='microk8s start'
+alias kup='microk8s start && microk8s config > ~/.kube/config && sudo microk8s refresh-certs -e ca.crt'
 alias kdown='microk8s stop'
 alias ks='kubectl -n kube-system'
 alias kr='kubectl -n container-registry'
@@ -108,14 +56,8 @@ p () {
 	echo -n `date` && echo " $@"
 }
 
-## open the atom editor in cwd
-alias atm="atom ."
-
-## open the atom editor in cwd
-alias v="vim ."
-
-## open vscode in cwd
-alias co="code ."
+## open antigravity in cwd
+alias ag="antigravity ."
 
 ## run odino.org locally
 alias blog="cd ~/github.com/odino/odino.github.com && co && guake -n ~/github.com/odino/odino.github.com && fig run -p 4000:4000 web"
@@ -128,10 +70,6 @@ alias mysql-server="docker run -ti -e importdb=no -v ~/local/namshi/mysql:/var/l
 ## through the namshi/mysql image
 alias mf="kubectl port-forward svc/mysql 3333:3306"
 alias my="mysql -u root -proot -h 127.0.0.1 -P 3333"
-
-## because fuck docker-compose, it's
-## too long to type
-alias fig='docker-compose'
 
 ## Get into a container
 in (){
@@ -158,9 +96,15 @@ rebase (){
     ck "$@" && git pull --rebase && master && git pull --rebase && ck "$@" && rebm
 }
 
+## commands
+for _cmd in ~/github.com/odino/dev/commands/*/script.sh; do
+  source "$_cmd"
+done
+unset _cmd
+
 ## Sys stuff
 alias update='sudo apt-get update'
-alias upgrade='update && sudo apt-get upgrade'
+alias upgrade='sudo apt-get upgrade'
 
 ## Go home!
 alias gome='cd ~/github.com/odino'
