@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "defaultMode": "plan",
+    "allow": [
+      "Read(~/personal.agent.md)",
+      "Edit(~/personal.agent.md)",
+      "Read(~/memories/**)",
+      "Edit(~/memories/**)",
+      "Read(~/github.com/odino/dev/agents/personal.agent.md)",
+      "Edit(~/github.com/odino/dev/agents/personal.agent.md)",
+      "Read(~/github.com/odino/dev/agents/memories/**)",
+      "Edit(~/github.com/odino/dev/agents/memories/**)"
+    ],
+    "ask": [],
+    "deny": []
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send -a claude \"$(jq -r .last_assistant_message[:100])\""
+          }
+        ]
+      }
+    ]
+  },
+  "allowedPaths": [
+    "~/personal.agent.md"
+  ],
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "autoMemoryEnabled": true
+}

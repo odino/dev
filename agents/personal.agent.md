@@ -1,5 +1,6 @@
 @memories/user.md
 @memories/interests.md
+@memories/no-git-writes.md
 
 ## Magic tricks
 

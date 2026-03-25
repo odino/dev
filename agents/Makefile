@@ -19,6 +19,8 @@ install-agent:
 	@echo "Linked personal.agent.md"
 	ln -sfn $(REPO_DIR)/agents/CLAUDE.md $(HOME)/CLAUDE.md
 	@echo "Linked CLAUDE.md"
+	ln -sfn $(REPO_DIR)/agents/settings.json $(HOME)/.claude/settings.json
+	@echo "Linked settings.json"
 
 .PHONY: install-memories
 install-memories:
