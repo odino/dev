@@ -1,6 +1,8 @@
 @memories/user.md
 @memories/interests.md
 @memories/no-git-writes.md
+@memories/update-claude-md-on-refactor.md
+@memories/clean-conditionals.md
 
 ## Magic tricks
 

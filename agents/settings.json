@@ -1,6 +1,5 @@
 {
   "permissions": {
-    "defaultMode": "plan",
     "allow": [
       "Read(~/personal.agent.md)",
       "Edit(~/personal.agent.md)",
@@ -11,8 +10,9 @@
       "Read(~/github.com/odino/dev/agents/memories/**)",
       "Edit(~/github.com/odino/dev/agents/memories/**)"
     ],
+    "deny": [],
     "ask": [],
-    "deny": []
+    "defaultMode": "plan"
   },
   "hooks": {
     "Stop": [
@@ -26,9 +26,6 @@
       }
     ]
   },
-  "allowedPaths": [
-    "~/personal.agent.md"
-  ],
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -38,5 +35,9 @@
     "frontend-design@claude-plugins-official": true
   },
   "effortLevel": "medium",
-  "autoMemoryEnabled": true
+  "autoMemoryEnabled": true,
+  "allowedPaths": [
+    "~/personal.agent.md"
+  ],
+  "voiceEnabled": true
 }
