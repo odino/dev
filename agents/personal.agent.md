@@ -5,6 +5,7 @@
 @memories/clean-conditionals.md
 @memories/custom-confirm-modal.md
 @memories/timestamps-in-models.md
+@memories/update-banner-style.md
 
 ## Magic tricks
 
