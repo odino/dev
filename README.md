@@ -1,284 +1,203 @@
 # Dev
 
-Since I decided to install as less stuff as
-possible on my machine, here I keep the
-dockerfiles / shell configs that define
-the tools and workflow I use.
-
-You might not find most of this stuff super
-useful, as it's simply a description of
-what runs (mostly through docker) on my
-dev machine.
+A collection of shell aliases, Kubernetes utilities, database tools, and Claude agent configs that define my development workflow. The goal is to install as little as possible on the host machine — most tooling runs through Docker or Kubernetes.
 
 * [odino.org/how-docker-changed-me/](http://odino.org/how-docker-changed-me/)
 
-## Installation
-
-As simple as:
+## Structure
 
 ```
-chmod +x build.sh
-./build.sh
+.
+├── aliases           # Main shell config — source this to load all shortcuts
+├── build.sh          # One-time system setup (apt packages, kubectl, helm)
+├── commands/
+│   └── gw/           # Git worktree manager (create, navigate, delete worktrees)
+├── bin/
+│   ├── db            # Connect to local MySQL via k8s port-forward
+│   └── db-tunnel     # SSH tunnel to remote DBs with config file support
+└── agents/           # Claude Code CLI integration (skills, memories, settings)
+    ├── Makefile       # `make install` symlinks everything to ~/.claude/
+    ├── settings.json  # Claude Code harness config (plan mode, hooks, status line)
+    ├── CLAUDE.md      # Personal agent directives
+    ├── personal.agent.md
+    ├── memories/      # Code style and workflow rules loaded by the agent
+    └── skills/        # Custom Claude skills (remember, get-context)
 ```
 
-To set the commands up, just source the aliases
-file in your `.bashrc` / `.zshrc` / `.whateverrc`:
+## Setup
 
-```
-source /path/to/odino/dockerfiles/aliases
-```
-
-## Available commands
-
-### cap
-
-Deploy using capistrano; copies the current folder
-into a container, mounts your ssh keys and executes
-then you can just type ↑ to get the command to deploy
-your app.
-
-```
-cd path/to/project
-cap
-root@39de5d514f5a:/src# sshsetup && cap deploy -S branch=... -S user=anadalin
+```sh
+chmod +x build.sh && ./build.sh   # install system deps (docker, kubectl, helm, etc.)
+source aliases                     # load shell shortcuts (add to .zshrc / .bashrc)
+make -C agents install             # symlink Claude skills, memories, and settings
 ```
 
-### atm
+## Shell aliases
 
-Runs Apache Benchmark:
+The `aliases` file dynamically sources every `commands/*/script.sh` on load.
 
-```
-ab -n 1000 -c 50 https://github.com/
-```
+### Kubernetes
 
-### atm
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `k` | `kubectl` | kubectl shortcut |
+| `kup` | `microk8s start` | Start local k8s cluster |
+| `kdown` | `microk8s stop` | Stop local k8s cluster |
+| `ks` | `kubectl -n staging` | Staging namespace shortcut |
+| `kr` | `kubectl -n production` | Production namespace shortcut |
+| `kx` | `kubectl -n default` | Default namespace shortcut |
+| `ki` | `kubectl -n infra` | Infra namespace shortcut |
 
-Launches the atom editor on the current directory.
+### Docker
 
-```
-cd projects/my-app
-atm
-```
+| Alias | Description |
+|-------|-------------|
+| `dup` | Enable Docker (snap) |
+| `ddown` | Disable Docker (snap) |
+| `docker-clean` | Remove exited containers and dangling images |
 
-### blog
+### Database
 
-Launches a container through `docker-compose` running
-[odino.org](http://odino.org) on port `4000`.
+| Alias | Description |
+|-------|-------------|
+| `mf` | Start MySQL port-forward (`kubectl port-forward svc/mysql 3333:3306`) |
+| `my` | Connect to local MySQL on port 3333 |
 
-```
-~  ᐅ blog
-Agent pid 10
-Identity added: //.ssh/id_rsa (//.ssh/id_rsa)
-root@cf8e192c4a71:/src# octopreview
-Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-[2015-07-12 20:31:33] INFO  WEBrick 1.3.1
-[2015-07-12 20:31:33] INFO  ruby 1.9.3 (2013-11-22) [x86_64-linux]
-[2015-07-12 20:31:33] INFO  WEBrick::HTTPServer#start: pid=21 port=4000
-Configuration from /src/_config.yml
-Auto-regenerating enabled: source -> public
-[2015-07-12 20:31:34] regeneration: 654 files changed
+### Git
 
-Dear developers making use of FSSM in your projects,
-FSSM is essentially dead at this point. Further development will
-be taking place in the new shared guard/listen project. Please
-let us know if you need help transitioning! ^_^b
-- Travis Tilley
+| Alias | Description |
+|-------|-------------|
+| `st` | `git status` |
+| `reset` | `git reset` |
+| `ck` | `git checkout` |
+| `push` | `git push` |
+| `merge` | `git merge` |
+| `rebase` | `git rebase` |
 
-AliasGenerator loading...
-Processing 224 post(s) for aliases...
->>> Compass is polling for changes. Press Ctrl-C to Stop.
-Processing 56 page(s) for aliases...
-```
+### Navigation
 
-I have some [aliases](https://github.com/odino/odino.github.com/blob/source/.bashrc)
-setup for octopress that you might find useful.
+| Alias | Description |
+|-------|-------------|
+| `gogo` | `cd ~/github.com` |
+| `gome` | `cd ~/github.com/odino` |
 
-### countdown
+### Utilities
 
-Triggers a countdown, useful for pausing bash scripts and
-giving the user the ability to stop them:
+| Alias | Description |
+|-------|-------------|
+| `countdown N` | Count down N seconds (useful for pausable scripts) |
+| `p` | Print message with timestamp |
+| `sshrenew` | Renew SSH agent keys |
 
-```
-~/projects/dev (master ✘)✹✭ ᐅ countdown 5
-```
+---
 
-### docker-clean
+## commands/
 
-Cleans docker directories:
+### gw — Git Worktree Manager
 
-```
-~/projects/dev (master ✔) ᐅ docker-clean
-Removing exited containers
-9bdfbf4fcf06
-Removing dangling images
-...
-```
+Manages git worktrees under `.worktrees/<branch>` inside any repo.
 
-### get-installed-packages
-
-Prints a list of the stuff I have installed on my own,
-so that I can review it and check if there's  anything
-that should either be dockerized, removed or kept on my
-host:
-
-```
-~/projects/dev (master ✘)✹✭ ᐅ get-installed-stuff
-You have this stuff installed:
-
-atom
-build-essential
-dropbox
-flashplugin-installer
-gimp
-git
-google-chrome-stable
-guake
-hipchat
-htop
-keepassx
-lxc-docker
-mysql-workbench
-skype:i386
-vim
-whois
-zsh
-
-If you wish to install these packages:
-
-sudo apt-get install -y \
-atom \
-build-essential \
-dropbox \
-flashplugin-installer \
-gimp \
-git \
-google-chrome-stable \
-guake \
-hipchat \
-htop \
-keepassx \
-lxc-docker \
-mysql-workbench \
-skype:i386 \
-vim \
-whois \
-zsh \
+```sh
+gw <branch>       # navigate to existing worktree, or create one (branch-or-new)
+gw rm <branch>    # delete a specific worktree and prune metadata
+gw nuke           # delete all worktrees under .worktrees/
 ```
 
-### mysql-server
+Worktrees live at `.worktrees/<branch>` relative to the repo root. `gw <branch>` will cd into an existing worktree, or create and cd into a new one if it doesn't exist.
 
-Launches a local mysql server:
+See `commands/gw/README.md` for full details.
 
-```
-~  ᐅ mysql-server
-=> Using an existing volume of MySQL
-=> Creating MySQL user ...
-========================================================================
-You can now connect to this MySQL Server using:
+---
 
-    mysql -uroot -proot -h<host> -P<port>
+## bin/
 
-MySQL user 'root' has no password but only allows local connections
-========================================================================
-=> importdb option selected was no
-=> No need for re-importing the databases
-=> Starting MySQL Server ...
+Scripts written in [ABS](https://www.abs-lang.org/) (A Better Script), a Go-inspired shell scripting language.
+
+### db
+
+Connects to a local MySQL instance running as a Kubernetes service.
+
+```sh
+db
 ```
 
-### mysql-local
+Runs `kubectl port-forward svc/mysql 3333:3306` in the background, waits for the tunnel, then opens `mysql -u root -proot -P 3333 -h 127.0.0.1`.
 
-Connect to the local mysql instance:
+### db-tunnel
 
-```
-~  ᐅ mysql-local
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 1
-Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
+SSH tunnel to a remote database with config file support.
 
-Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
+```sh
+db-tunnel -f config.txt -db mydb -env live
+db-tunnel -f config.txt -status up
+db-tunnel -f config.txt connect    # open MySQL session after tunneling
 ```
 
-### ngrok
+**Flags:**
 
-Runs [ngrok](https://ngrok.com/) locally, so that I can
-[expose stuff I am working on the internet](http://odino.org/how-to-test-3rd-party-hooks-and-webservices-locally/):
+| Flag | Description |
+|------|-------------|
+| `-f <file>` | Config file path |
+| `-db <name>` | Database name to connect to |
+| `-env <live\|staging>` | Target environment |
+| `-status <up\|down>` | Check or tear down the tunnel |
 
-```
-~  ᐅ ngrok 8888
-[07/20/15 08:10:16] [INFO] Reading configuration file /.ngrok
-[07/20/15 08:10:16] [INFO] [client] Trusting root CAs: [assets/client/tls/ngrokroot.crt]
-[07/20/15 08:10:16] [INFO] [view] [web] Serving web interface on 127.0.0.1:4040
-[07/20/15 08:10:16] [INFO] Checking for update
-[07/20/15 08:10:17] [DEBG] [ctl:672c001e] New connection to: 96.126.125.171:443
-[07/20/15 08:10:17] [DEBG] [ctl:672c001e] Writing message: {"Type":"Auth","Payload":{"Version":"2","MmVersion":"1.7","User":"","Password":"","OS":"linux","Arch":"amd64","ClientId":""}}
-[07/20/15 08:10:17] [DEBG] [ctl:672c001e] Waiting to read message
-```
-
-### play
-
-Spins up a bare-minimum linux image ([alpine](https://github.com/gliderlabs/docker-alpine))
-for you to play:
+**Config file format:**
 
 ```
-~  ᐅ play
-/ # ls -la
-total 56
-drwxr-xr-x   30 root     root          4096 Jul 23 06:36 .
-drwxr-xr-x   30 root     root          4096 Jul 23 06:36 ..
--rwxr-xr-x    1 root     root             0 Jul 23 06:36 .dockerenv
--rwxr-xr-x    1 root     root             0 Jul 23 06:36 .dockerinit
-drwxr-xr-x    2 root     root          4096 Jul 23 06:33 bin
-drwxr-xr-x    5 root     root           380 Jul 23 06:36 dev
-drwxr-xr-x   19 root     root          4096 Jul 23 06:36 etc
-drwxr-xr-x    2 root     root          4096 Jun 12 19:19 home
-drwxr-xr-x    7 root     root          4096 Jul 23 06:33 lib
-lrwxrwxrwx    1 root     root            12 Jun 12 19:19 linuxrc -> /bin/busybox
-drwxr-xr-x    5 root     root          4096 Jun 12 19:19 media
-drwxr-xr-x    2 root     root          4096 Jun 12 19:19 mnt
-dr-xr-xr-x  290 root     root             0 Jul 23 06:36 proc
-drwx------    2 root     root          4096 Jul 23 06:36 root
-drwxr-xr-x    2 root     root          4096 Jun 12 19:19 run
-drwxr-xr-x    2 root     root          4096 Jul 23 06:33 sbin
-dr-xr-xr-x   13 root     root             0 Jul 23 06:36 sys
-drwxrwxrwt    2 root     root          4096 Jun 12 19:19 tmp
-drwxr-xr-x   12 root     root          4096 Jul 23 06:33 usr
-drwxr-xr-x   10 root     root          4096 Jul 23 06:32 var
-/ #
+jumphost: domain.com
+db_name
+host: 10.0.0.1
+user: myuser
+pwd: mypassword
+port: 3307
+jumphost_env: jumphost.domain.com
 ```
 
-### unrar
+---
 
-Extracts a `rar` archive in the current directory:
+## agents/
 
+Claude Code integration layer. Everything here is installed to `~/.claude/` via `make -C agents install`.
+
+### make install
+
+```sh
+make -C agents install
 ```
-~/Downloads/rar (master ✔) ᐅ unrar archive.rar
 
-UNRAR 5.21 freeware      Copyright (c) 1993-2015 Alexander Roshal
+Symlinks:
+- `agents/skills/*/` → `~/.claude/skills/`
+- `agents/personal.agent.md` + `agents/CLAUDE.md` + `agents/settings.json` → `~/`
+- `agents/memories/` → `~/memories/`
 
+### settings.json
 
-Extracting from archive.rar
-```
+Configures the Claude Code harness:
 
-### wrk
+- **Default mode**: `plan` — Claude plans before executing any non-trivial task
+- **Stop hook**: sends a desktop notification via `notify-send` when a session exits
+- **Status line**: custom status using `npx ccstatusline@latest`
+- **Permissions**: read/edit access to agent files and memories
 
-Runs the [wrk](https://github.com/wg/wrk) benchmarking tool:
+### memories/
 
-```
-~/projects/dev (master ✘)✹✭ ᐅ wrk http://google.com
-Running 10s test @ http://google.com
-  2 threads and 10 connections
-^C  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency   125.22ms    2.15ms 144.51ms   96.14%
-    Req/Sec    40.37     12.37    50.00     83.65%
-  440 requests in 5.60s, 209.65KB read
-Requests/sec:     78.51
-Transfer/sec:     37.41KB
-```
+Code style and workflow rules loaded by the personal agent on every session:
+
+| File | Rule |
+|------|------|
+| `user.md` | User context (name: Alex) |
+| `no-git-writes.md` | Never run git write operations unless explicitly asked |
+| `update-claude-md-on-refactor.md` | Keep CLAUDE.md in sync during large refactors |
+| `clean-conditionals.md` | Prefer explicit multi-line `if` blocks over ternaries |
+| `custom-confirm-modal.md` | Never use `window.confirm()` — build a custom modal instead |
+| `timestamps-in-models.md` | All DB tables must have indexed `created_at` / `updated_at` |
+| `update-banner-style.md` | Use bottom-fixed dark toast pattern for notifications |
+| `url-state-management.md` | Persist UI state (filters, sort, tabs) in URL params |
+
+### skills/
+
+| Skill | Description |
+|-------|-------------|
+| `remember` | Save a new memory to `~/memories/` and import it into `personal.agent.md` |
+| `get-context` | Quick codebase context retrieval using a lightweight model |
