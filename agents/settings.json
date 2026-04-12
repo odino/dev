@@ -15,6 +15,18 @@
     "defaultMode": "plan"
   },
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/mirror-plan.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
@@ -39,5 +51,6 @@
   "autoMemoryEnabled": true,
   "allowedPaths": [
     "~/personal.agent.md"
-  ]
+  ],
+  "model": "haiku"
 }
