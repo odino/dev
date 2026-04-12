@@ -21,11 +21,14 @@ fi
 plan_file="$tool_input_path"
 [[ -f "$plan_file" ]] || exit 0
 
+repo_root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || { exit 0; }
+
 marker="plan-source: $plan_file"
 
 if [[ "$tool_name" == "Edit" ]]; then
     # Find existing mirror by embedded source marker and update it
-    existing_mirror=$(grep -rl "$marker" "$cwd/.plans" --include="*.md" 2>/dev/null | head -1)
+    mkdir -p "$repo_root/.plans"
+    existing_mirror=$(grep -rl "$marker" "$repo_root/.plans" --include="*.md" 2>/dev/null | head -1 || true)
     if [[ -n "$existing_mirror" ]]; then
         # Preserve the marker line, replace the rest
         echo "[//]: # ($marker)" > "$existing_mirror"
@@ -38,15 +41,15 @@ fi
 date_iso=$(date +%Y-%m-%d)
 unix_ts=$(date +%s)
 
-first_heading=$(grep -m1 '^#' "$plan_file" \
+first_heading=$(grep -m1 '^#' "$plan_file" 2>/dev/null \
     | sed 's/^#\+[[:space:]]*//' \
     | tr '[:upper:]' '[:lower:]' \
-    | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//')
+    | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//' || echo "plan")
 
 [[ -z "$first_heading" ]] && first_heading="plan"
 
-mkdir -p "$cwd/.plans"
-mirror_path="$cwd/.plans/${date_iso}-${unix_ts}-${first_heading}.md"
+mkdir -p "$repo_root/.plans"
+mirror_path="$repo_root/.plans/${date_iso}-${unix_ts}-${first_heading}.md"
 
 {
     echo "[//]: # ($marker)"
