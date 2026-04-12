@@ -7,6 +7,7 @@
 @memories/timestamps-in-models.md
 @memories/update-banner-style.md
 @memories/url-state-management.md
+@memories/no-queries-in-loops.md
 
 ## Magic tricks
 
