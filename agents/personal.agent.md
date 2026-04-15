@@ -8,6 +8,7 @@
 @memories/update-banner-style.md
 @memories/url-state-management.md
 @memories/no-queries-in-loops.md
+@memories/no-app-boot.md
 
 ## Magic tricks
 
