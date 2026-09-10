@@ -9,6 +9,8 @@
 @memories/url-state-management.md
 @memories/no-queries-in-loops.md
 @memories/no-app-boot.md
+@memories/links-open-new-tab.md
+@memories/nudge-compact-large-context.md
 
 ## Magic tricks
 

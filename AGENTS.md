@@ -11,8 +11,9 @@ A collection of shell aliases, Docker/k8s utilities, and Claude agent configs to
   - `db` — Connect to local MySQL via k8s port-forward (ABS script)
   - `db-tunnel` — SSH tunnel to remote DBs with config file support (ABS script)
 - **agents/** — Claude Code agent configs and skills
-  - `Makefile` — `make install` symlinks skills/memories to `~/.claude/`
+  - `Makefile` — `make install` symlinks skills/memories/subagents to `~/.claude/`
   - `skills/` — Custom Claude skills
+  - `subagents/` — Custom Claude subagents (single `.md` files w/ frontmatter, installed to `~/.claude/agents/`)
   - `memories/` — User context files
 
 ## Setup

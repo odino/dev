@@ -57,7 +57,7 @@ p () {
 }
 
 ## open antigravity in cwd
-alias ag="antigravity ."
+alias ag="(nohup ~/Antigravity\ IDE/antigravity-ide . --no-sandbox >/dev/null 2>&1 &)"
 
 ## run odino.org locally
 alias blog="cd ~/github.com/odino/odino.github.com && co && guake -n ~/github.com/odino/odino.github.com && fig run -p 4000:4000 web"

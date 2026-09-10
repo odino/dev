@@ -3,9 +3,11 @@ SKILLS_SRC   := $(REPO_DIR)/agents/skills
 CLAUDE_SKILLS := $(HOME)/.claude/skills
 HOOKS_SRC    := $(REPO_DIR)/agents/hooks
 CLAUDE_HOOKS := $(HOME)/.claude/hooks
+SUBAGENTS_SRC := $(REPO_DIR)/agents/subagents
+CLAUDE_AGENTS := $(HOME)/.claude/agents
 
 .PHONY: install
-install: install-skills install-agent install-memories install-hooks
+install: install-skills install-agent install-memories install-hooks install-subagents
 
 .PHONY: install-skills
 install-skills:
@@ -36,4 +38,12 @@ install-hooks:
 	@for hook in $(HOOKS_SRC)/*; do \
 		name=$$(basename $$hook); \
 		ln -sfn $$hook $(CLAUDE_HOOKS)/$$name && echo "Linked hook: $$name"; \
+	done
+
+.PHONY: install-subagents
+install-subagents:
+	@mkdir -p $(CLAUDE_AGENTS)
+	@for agent in $(SUBAGENTS_SRC)/*.md; do \
+		name=$$(basename $$agent); \
+		ln -sfn $$agent $(CLAUDE_AGENTS)/$$name && echo "Linked subagent: $$name"; \
 	done
