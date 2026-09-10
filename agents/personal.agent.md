@@ -11,6 +11,7 @@
 @memories/no-app-boot.md
 @memories/links-open-new-tab.md
 @memories/nudge-compact-large-context.md
+@memories/cache-slow-query-results.md
 
 ## Magic tricks
 
