@@ -12,6 +12,7 @@
 @memories/links-open-new-tab.md
 @memories/nudge-compact-large-context.md
 @memories/cache-slow-query-results.md
+@memories/bq-pipe-syntax.md
 
 ## Magic tricks
 
