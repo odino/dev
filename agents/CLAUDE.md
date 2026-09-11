@@ -1,7 +1,7 @@
 ## Workflow Orchestration
 
 @personal.agent.md
-@work.agent.md
+@~/work.agent.md
 
 ## General
 
