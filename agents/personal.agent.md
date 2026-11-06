@@ -13,6 +13,7 @@
 @memories/nudge-compact-large-context.md
 @memories/cache-slow-query-results.md
 @memories/bq-pipe-syntax.md
+@memories/q-means-question-only.md
 
 ## Magic tricks
 

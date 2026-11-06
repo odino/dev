@@ -50,6 +50,7 @@
   "effortLevel": "medium",
   "tui": "default",
   "autoMemoryEnabled": true,
+  "skipWorkflowUsageWarning": true,
   "voiceEnabled": true,
   "allowedPaths": [
     "~/personal.agent.md"
